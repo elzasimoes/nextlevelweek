@@ -20,29 +20,35 @@
 <!-- Down Header -->
 {% include "partials/page_header.html" %}
 <main>
+    {% if total > 0 %}
     <h4>
-        <strong>2 pontos </strong> encontrados
+        <strong>{{ total }} pontos </strong> encontrados
     </h4>
 
     <div class="cards">
+
+        {% for place in places %}
+
         <div class="card">
-            <img src="https://images.unsplash.com/photo-1481761289552-381112059e05?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Colectoria">
-            <h1>Colectoria</h1>
-            <h3>Resíduos eletrônicos, Lâmpadas</h3>
+            <img src="{{ place.image }}" alt="{{ place.name }}">
+            <h1>{{ place.name }}</h1>
+            <h3>{{ place.items }}</h3>
             <p>
-                Rua do Sul, Santa Catarina. <br> Guilherme Sei lá do que, Jardim América. <br> N 522.
-            </p>
-        </div>
-        <div class="card">
-            <img src="https://images.unsplash.com/photo-1555606090-1640be5631c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60" alt="Papersider">
-            <h1>Papersider</h1>
-            <h3>Papéis e Papelão</h3>
-            <p>
-                Rua do Sul, Santa Catarina. <br> Guilherme Sei lá do que, Jardim América. <br> N 522.
+                {{ place.adress }}
+                {{ place.adress2 }}
+                {{ place.state }}
+                {{ place.city }}
             </p>
         </div>
 
+        {% endfor %}
+
     </div>
+    {% else %}
+
+    <h4><strong>Não encontrados</strong> nenhum local 😢 </h4>
+    {% endif %}
+
 </main>
 <!-- Down -->
 {% endblock content %}
